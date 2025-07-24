@@ -1,5 +1,9 @@
 name: Build & Push TKT Dev Containers
 
+permissions:
+  packages: write
+  contents: read
+
 on:
   push:
     branches:
@@ -12,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        distro: [arch, debian, fedora, slackware, suse, ubuntu, void]
+        distro: [arch, debian, gentoo-openrc, gentoo-systemd, mint, fedora, popos, slackware, suse, ubuntu, void]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
