@@ -21,43 +21,47 @@ RUN echo "x11-libs/libxkbcommon X" >> /etc/portage/package.use/libxkbcommon
 # Sync tree, set profile, and update portage first
 RUN emerge-webrsync
 RUN eselect profile set 2
-RUN emerge --verbose --oneshot portage
+
+RUN emerge --oneshot portage
+RUN emerge --update --deep --newuse @world
+
+RUN emerge sys-kernel/gentoo-kernel-bin
 
 # Install packages: prefer binpkgs, fallback to build
-RUN emerge --verbose --getbinpkg --usepkg --buildpkg --binpkg-respect-use=y --autounmask=y --autounmask-continue \
-      sys-kernel/gentoo-sources \
-      sys-apps/systemd \
-      llvm-core/llvm \
-      llvm-core/clang \
-      llvm-core/lld \
-      dev-util/ccache \
-      sys-devel/binutils \
-      sys-devel/gcc \
-      dev-build/make \
-      dev-build/cmake \
-      dev-vcs/git \
-      dev-libs/elfutils \
-      sys-apps/kmod \
-      app-arch/lz4 \
-      app-arch/zstd \
-      app-shells/bash \
-      sys-devel/bison \
-      sys-devel/flex \
-      dev-lang/perl \
-      dev-lang/python \
-      dev-python/pip \
-      net-misc/curl \
-      net-misc/rsync \
-      app-arch/tar \
-      sys-process/time \
-      app-admin/sudo \
-      sys-apps/util-linux \
-      dev-util/patchutils \
-      dev-qt/qtcore \
-      dev-qt/qtgui \
-      dev-qt/qtwidgets \
-      sys-libs/ncurses \
-      dev-libs/openssl \
-      dev-build/ninja
+#RUN emerge --verbose --getbinpkg --usepkg --buildpkg --binpkg-respect-use=y --autounmask=y --autounmask-continue \
+#      sys-kernel/gentoo-sources \
+#      sys-apps/systemd \
+#      llvm-core/llvm \
+#      llvm-core/clang \
+#      llvm-core/lld \
+#      dev-util/ccache \
+#      sys-devel/binutils \
+#      sys-devel/gcc \
+#      dev-build/make \
+#      dev-build/cmake \
+#      dev-vcs/git \
+#      dev-libs/elfutils \
+#      sys-apps/kmod \
+#      app-arch/lz4 \
+#      app-arch/zstd \
+#      app-shells/bash \
+#      sys-devel/bison \
+#      sys-devel/flex \
+#      dev-lang/perl \
+#      dev-lang/python \
+#      dev-python/pip \
+#      net-misc/curl \
+#      net-misc/rsync \
+#      app-arch/tar \
+#      sys-process/time \
+#      app-admin/sudo \
+#      sys-apps/util-linux \
+#      dev-util/patchutils \
+#      dev-qt/qtcore \
+#      dev-qt/qtgui \
+#      dev-qt/qtwidgets \
+#      sys-libs/ncurses \
+#      dev-libs/openssl \
+#      dev-build/ninja
 
 CMD ["/bin/bash"]
