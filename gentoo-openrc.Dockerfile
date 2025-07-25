@@ -22,8 +22,10 @@ RUN echo "x11-libs/libxkbcommon X" >> /etc/portage/package.use/libxkbcommon
 RUN emerge-webrsync
 RUN eselect profile set 1
 
-RUN emerge --verbose --oneshot portage
-RUN emerge --verbose --update --deep --newuse @world
+RUN emerge --oneshot portage
+RUN emerge --update --deep --newuse @world
+
+RUN emerge sys-kernel/gentoo-kernel-bin
 
 # Install packages: prefer binpkgs, fallback to build
 #RUN emerge --verbose --getbinpkg --usepkg --buildpkg --binpkg-respect-use=y --autounmask=y --autounmask-continue \
