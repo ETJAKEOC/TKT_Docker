@@ -18,6 +18,9 @@ RUN yes | slackpkg -batch=on -default_answer=y install \
     libxml2 lld llvm lz4 lzop m4 make ncurses nghttp2 nghttp3 openssl patchutils perl python3 python3-pip rsync schedtool spirv-llvm-translator \
     sudo tar time wget xxHash xz zstd
 
+# ldconfig because Slacklyfe
+RUN ldconfig
+
 # Clean up cache
 RUN rm -rf /var/cache/*
 
