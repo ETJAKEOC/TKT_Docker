@@ -13,8 +13,10 @@ RUN mkdir -p /etc/slackpkg && \
 
 # Install build deps
 RUN yes | slackpkg -batch=on -default_answer=y install \
-    bash bc bison ccache cmake cpio curl flex gcc git kmod lz4 make patchutils perl python3 python3-pip rsync \
-    sudo tar time wget zstd clang llvm lld dwarves
+    bash bc binutils bison brotli ccache clang cmake cpio curl cyrus-sasl diffutils dwarves elfutils fakeroot fakeroot-ng file flex gc gcc \
+    gcc-g++ gcc-gcobol gcc-gdc gcc-gfortran gcc-gm2 gcc-gnat gcc-go gcc-objc gcc-rust git glibc guile gzip kernel-headers kmod libedit libelf \
+    libxml2 lld llvm lz4 lzop m4 make ncurses nghttp2 nghttp3 openssl patchutils perl python3 python3-pip rsync schedtool spirv-llvm-translator \
+    sudo tar time wget xxHash xz zstd
 
 # Clean up cache
 RUN rm -rf /var/cache/*
