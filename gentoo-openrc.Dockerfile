@@ -3,6 +3,8 @@ FROM gentoo/stage3:latest
 # Modern Gentoo wants /etc/portage/package.use as a dir, not a file
 RUN mkdir -p /etc/portage/package.use /etc/portage/package.accept_keywords
 RUN echo 'sys-apps/openrc' >> /etc/portage/package.use/tkt
+RUN echo 'sys-kernel/installkernel dracut >> /etc/portage/package.use/installkernel'
+
 RUN echo "dev-libs/openssl ~amd64" >> /etc/portage/package.accept_keywords/tkt
 
 # Enable binpkg fetch, ccache
@@ -23,9 +25,10 @@ RUN emerge-webrsync
 RUN eselect profile set 1
 
 RUN emerge --oneshot portage
-RUN emerge --update --deep --newuse @world
-
 RUN emerge sys-kernel/gentoo-kernel-bin
+
+#RUN emerge --update --deep --newuse @world
+
 
 # Install packages: prefer binpkgs, fallback to build
 #RUN emerge --verbose --getbinpkg --usepkg --buildpkg --binpkg-respect-use=y --autounmask=y --autounmask-continue \
