@@ -3,9 +3,9 @@ FROM gentoo/stage3:systemd
 # Modern Gentoo wants /etc/portage/package.use as a dir, not a file
 RUN mkdir -p /etc/portage/package.use /etc/portage/package.accept_keywords
 RUN echo 'sys-apps/systemd default-hierarchy=unified' >> /etc/portage/package.use/tkt
-RUN echo 'sys-kernel/installkernel dracut >> /etc/portage/package.use/installkernel'
+RUN echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
 
-RUN echo "dev-libs/openssl ~amd64" >> /etc/portage/package.accept_keywords/tkt
+RUN echo 'dev-libs/openssl ~amd64' >> /etc/portage/package.accept_keywords/tkt
 
 # Enable binpkg fetch, ccache
 ENV ACCEPT_KEYWORDS="~amd64"
